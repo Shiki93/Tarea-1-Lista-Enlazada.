@@ -1,63 +1,62 @@
 #include <stdio.h>
 #include <string.h>
+#include "myHeader.h"
 
-typedef struct Alient_t{
-    char nombre[30];
-    int id;
-    char *especie[30];
-    struct planetas_t *planetas;
-    struct idioma_t *idiomas;
-    struct alien_t *siguiente;
-}alien;
 
-typedef struct planetas_t{
-    char nombre[30];
-    int starwars_code;
-    char agua;
-    char oxigeno;
-    struct planetas_t *siguiente;
-}planeta;
+alien crearAlien(char pNombre,int pId, char pEspecie, planeta pPlaneta, idioma pIdioma){
+    strcpy(lista_aliens->nombre, pNombre);
+    strcpy(lista_aliens->especie, pEspecie);
+    lista_aliens->id = pId;
+    lista_aliens->planetas=pPlaneta;
+    lista_aliens->idiomas=pIdioma;
+    struct alien_t *siguiente
+}
 
-typedef struct idioma_t{
-    char nombre[30];
-    int tipo;
-    int simbolos;
+idioma crearIdioma(char pNombre, int pTipo,int pSimbolo,planeta pPlaneta){
+    strcpy(lista_aliens->idiomas->nombre, pNombre);
+    lista_aliens->idiomas->tipo = pTipo;
+    lista_aliens->idiomas->simbolos = pSimbolo;
+    lista_aliens->idiomas->planetas= pPlaneta;
     struct idiomas_t *siguiente;
-    struct planetas_t *planetas;
-}idioma;
+}
 
-int main(int argc, const char* argv[]){
+planeta crearPlaneta(char pNombre,int pCode, char pAgua,char pOxigeno){
+    strcpy(lista_aliens->planetas->nombre,pNombre);
+    lista_aliens->planetas->agua = pAgua;
+    lista_aliens->planetas->oxigeno =pOxigeno;
+    lista_aliens->planetas->starwars_code = pCode;
+    struct planetas_t *siguiente;
+}
+
+int main(){
     alien *lista_aliens;
     lista_aliens = malloc(sizeof(alien));
-    lista_aliens->idiomas = malloc(sizeof(idioma));
-    lista_aliens->planetas = malloc(sizeof(planeta));
+    int n, opcion;
+    do
+    {
+        printf( "\n   1. Ingresar nuevo alien", 163 );
+        printf( "\n   2. Buscar alien", 163 );
+        printf( "\n   3. Salir." );
+        printf( "\n\n   Introduzca opción (1-3): ", 162 );
 
-    strcpy(lista_aliens->nombre, "Alf");
-    strcpy(lista_aliens->especie, "Alien 33");
-    lista_aliens->id = 1234;
+        scanf( "%d", &opcion );
 
-    strcpy(lista_aliens->idiomas->nombre, "Wooky");
-    lista_aliens->idiomas->tipo = 1; //1 = hablado;
-    lista_aliens->idiomas->simbolos = 50;
+        /* Inicio del anidamiento */
 
-    strcpy(lista_aliens->planetas->nombre, "Naboo");
-    lista_aliens->planetas->agua = 'S';
-    lista_aliens->planetas->oxigeno = 'S';
-    lista_aliens->planetas->starwars_code = 875432;
+        switch ( opcion )
+        {
+            case 1: printf( "\n   Introduzca el nombre del alien: ", 163 );
+                    scanf( "%d", &n );
+                    printf( "\n  ", n, n * 2 );
+                    break;
 
-    printf("El nombre del Alien es: %s\n", lista_aliens->nombre);
-    printf("El ID del alien es: %d\n", lista_aliens->id);
-    printf("La especie del alien es: %s\n\n", lista_aliens->especie);
-
-    printf("El alien habla el idioma: %s\n", lista_aliens->idiomas->nombre);
-    printf("El tipo de idioma es: %d\n", lista_aliens->idiomas->tipo);
-    printf("La cantidad de simbolos es: %d\n\n", lista_aliens->idiomas->simbolos);
-
-    printf("El planeta de origen es: %s\n", lista_aliens->planetas->nombre);
-    printf("¿El planeta tiene agua? %c\n", lista_aliens->planetas->agua);
-    printf("¿El planeta tiene oxigeno? %c\n", lista_aliens->planetas->oxigeno);
-    printf("El codigo Star Wars es: %d\n", lista_aliens->planetas->starwars_code);
+            case 2: printf( "\n   Introduzca el id del alien: ", 163 );
+                    scanf( "%d", &n );
+                    printf( "\n   La mitad de %d es %f\n\n", n, ( float ) n / 2 );
+                    break;
+          }
+         /* Fin del anidamiento */
+    } while ( opcion != 4 );
 
     return 0;
 }
-
